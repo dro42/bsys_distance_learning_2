@@ -1,7 +1,7 @@
+import sys
 from collections import deque
 
 import pandas as pd
-from IPython.display import display
 
 
 def first_come_first_served_scheduling(processes):
@@ -186,13 +186,39 @@ def main():
     processes = [("A", 4, 3), ("B", 3, 7), ("C", 1, 4), ("D", 5, 2), ("E", 0, 2), ("F", 2, 4)]  # example
     processes_exe = [("A", 4, 4), ("B", 3, 3), ("C", 0, 2), ("D", 2, 7), ("E", 5, 2), ("F", 1, 4)]  # exercise
     # processes = [("A", 4, 4), ("B", 3, 3), ("C", 0, 2), ("D", 2, 7), ("E", 5, 2), ("F", 1, 4)] #test
-    timeline_sj, _, _, _, _ = shortest_job_first_scheduling(processes)
-    timeline_fifo, _, _, _, _ = first_come_first_served_scheduling(processes)
-    timeline_rr, _, _, _, _ = round_robin_scheduling(processes)
+    timeline_sj, waiting_time_sj, turnaround_time_sj, average_waiting_time_sj, average_turnaround_time_sj = shortest_job_first_scheduling(
+        processes)
+    timeline_fifo, waiting_time_fifo, turnaround_time_fifo, average_waiting_time_fifo, average_turnaround_time_fifo = first_come_first_served_scheduling(
+        processes)
+    (timeline_rr, waiting_time_rr, turnaround_time_rr, average_waiting_time_rr,
+     average_turnaround_time_rr) = round_robin_scheduling(
+        processes)
 
-    display(display_scheduling_results(timeline_fifo))
-    display(display_scheduling_results(timeline_sj))
-    display(display_scheduling_results(timeline_rr))
+    display_scheduling_results(timeline_fifo)
+    print(f"""
+        Wait time: {waiting_time_fifo}
+        Turnaround time: {turnaround_time_fifo}
+        Average waiting time: {average_waiting_time_fifo}
+        Average turnaround time: {average_turnaround_time_fifo}
+
+        """)
+    display_scheduling_results(timeline_sj)
+    print(f"""
+        Wait time: {waiting_time_sj}
+        Turnaround time: {turnaround_time_sj}
+        Average waiting time: {average_waiting_time_sj}
+        Average turnaround time: {average_turnaround_time_sj}
+
+        """)
+    display_scheduling_results(timeline_rr)
+    print(f"""
+    Wait time: {waiting_time_rr}
+    Turnaround time: {turnaround_time_rr}
+    Average waiting time: {average_waiting_time_rr}
+    Average turnaround time: {average_turnaround_time_rr}
+
+    """)
+    sys.exit(0)
 
 
 if __name__ == '__main__':
