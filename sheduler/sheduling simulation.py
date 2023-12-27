@@ -178,11 +178,7 @@ def display_scheduling_results(timeline):
     # Transpose the DataFrame to swap rows and columns
     df_execution_transposed = df_execution_table.transpose()
 
-    # Styling and displaying the DataFrame directly
-    styled_df = df_execution_transposed.style.map(
-        lambda x: 'background-color: lightgreen' if x == 'X' else 'background-color: white'
-    )
-    display(styled_df)
+    print(df_execution_transposed)
 
 
 def main():
